@@ -8,6 +8,7 @@ import { fontawesome5Iconlib } from './fontawesome5.js'
 import { jqueryuiIconlib } from './jqueryui.js'
 // import  { materialiconsIconlib } from  './materialicons.js'
 import { spectreIconlib } from './spectre.js'
+import { desmosIconlib } from './desmos.js'
 
 export const iconlibs = {
   // bootstrap2: bootstrap2Iconlib,
@@ -19,5 +20,6 @@ export const iconlibs = {
   // foundation3: foundation3Iconlib,
   jqueryui: jqueryuiIconlib,
   // materialicons: materialiconsIconlib,
-  spectre: spectreIconlib
+  spectre: spectreIconlib,
+  desmos: desmosIconlib
 }
