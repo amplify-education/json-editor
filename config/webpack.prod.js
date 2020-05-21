@@ -30,6 +30,26 @@ function createConfig () {
           }
         }
       ]
+    },
+    {
+      test: /\.js|\.css.js$/,
+      exclude: /node_modules/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: { uglify: true },
+                  forceAllTransforms: true
+                }
+              ]
+            ]
+          }
+        }
+      ]
     }
   ]
 
