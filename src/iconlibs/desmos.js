@@ -9,7 +9,7 @@ const mapping = {
   add: 'plus',
   subtract: 'minus',
   cancel: 'remove',
-  save: 'sparkline',
+  save: 'check',
   moveup: 'chevron-up',
   moveright: 'chevron-right',
   movedown: 'chevron-down',
