@@ -190,6 +190,7 @@ export class MultipleEditor extends AbstractEditor {
       })
       const unrecognizedPropertyWarning = document.createElement('span')
       unrecognizedPropertyWarning.textContent = 'Property "' + this.key + '" has been removed from the schema. Please remove before saving changes.'
+      unrecognizedPropertyWarning.classList.add('unrecognized-warning-text')
       unrecognizedPropertyEl.appendChild(unrecognizedPropertyWarning)
       unrecognizedPropertyEl.appendChild(removeBtn)
       container.appendChild(unrecognizedPropertyEl)
