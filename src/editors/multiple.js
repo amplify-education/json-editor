@@ -170,10 +170,6 @@ export class MultipleEditor extends AbstractEditor {
   build () {
     const { container } = this
 
-    if (this.isUnrecognizedProperty()) {
-      container.classList.add('unrecognized-property')
-    }
-
     this.header = this.label = this.theme.getFormInputLabel(this.getTitle(), this.isRequired())
     this.container.appendChild(this.header)
 
