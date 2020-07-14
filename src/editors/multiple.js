@@ -170,11 +170,35 @@ export class MultipleEditor extends AbstractEditor {
   build () {
     const { container } = this
 
+    if (this.isUnrecognizedProperty()) {
+      container.classList.add('unrecognized-property')
+    }
+
     this.header = this.label = this.theme.getFormInputLabel(this.getTitle(), this.isRequired())
     this.container.appendChild(this.header)
 
     this.switcher = this.theme.getSwitcher(this.display_text)
     container.appendChild(this.switcher)
+
+    if (this.isUnrecognizedProperty()) {
+      const unrecognizedPropertyEl = document.createElement('div')
+      unrecognizedPropertyEl.classList.add('unrecognized-property')
+      var removeBtn = this.getButton('Delete', 'delete', 'Delete property')
+      removeBtn.addEventListener('click', e => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        if (this.parent && this.parent.removeObjectProperty) {
+          this.parent.removeObjectProperty(this.key)
+        }
+      })
+      const unrecognizedPropertyWarning = document.createElement('span')
+      unrecognizedPropertyWarning.textContent = 'Property "' + this.key + '" has been removed from the schema. Please remove before saving changes.'
+      unrecognizedPropertyEl.appendChild(unrecognizedPropertyWarning)
+      unrecognizedPropertyEl.appendChild(removeBtn)
+      container.appendChild(unrecognizedPropertyEl)
+    }
+
     this.switcher.addEventListener('change', e => {
       e.preventDefault()
       e.stopPropagation()
@@ -213,6 +237,10 @@ export class MultipleEditor extends AbstractEditor {
     })
 
     this.switchEditor(0)
+  }
+
+  isUnrecognizedProperty () {
+    return this.schema.type !== 'any' && !this.schema.oneOf && !this.schema.anyOf
   }
 
   onChildEditorChange (editor) {
