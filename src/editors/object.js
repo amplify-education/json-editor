@@ -849,7 +849,7 @@ export class ObjectEditor extends AbstractEditor {
 
     try {
       const json = JSON.parse(this.editjson_textarea.value)
-      this.setValue(json)
+      this.setValue(json, undefined, true)
       this.hideEditJSON()
       this.onChange(true)
     } catch (e) {
@@ -1156,7 +1156,7 @@ export class ObjectEditor extends AbstractEditor {
     return false
   }
 
-  setValue (value, initial) {
+  setValue (value, initial, fromEditJson) {
     value = value || {}
 
     if (typeof value !== 'object' || Array.isArray(value)) value = {}
@@ -1168,7 +1168,12 @@ export class ObjectEditor extends AbstractEditor {
         this.addObjectProperty(i)
         editor.setValue(value[i], initial)
       } else {
-        editor.setValue(editor.getDefault(), initial)
+        if (fromEditJson) {
+          this.removeObjectProperty(i)
+          editor.destroy()
+        } else {
+          editor.setValue(editor.getDefault(), initial)
+        }
       }
     })
 
