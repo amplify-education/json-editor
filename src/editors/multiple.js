@@ -237,7 +237,7 @@ export class MultipleEditor extends AbstractEditor {
   }
 
   isUnrecognizedProperty () {
-    return this.schema.type !== 'any' && !this.schema.oneOf && !this.schema.anyOf
+    return this.schema.type !== 'any' && !this.oneOf && !this.anyOf
   }
 
   onChildEditorChange (editor) {
